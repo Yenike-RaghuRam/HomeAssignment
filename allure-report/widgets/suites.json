@@ -1,1 +1,1 @@
-{"total":2,"items":[{"uid":"21fca8c94c49999f4ffba1b318165bb8","name":"Login Page: Verify Login with different username and passwords with messages","statistic":{"failed":0,"broken":0,"skipped":0,"passed":14,"unknown":0,"total":14}}]}
+{"total":1,"items":[{"uid":"52dafac86ee12ce5786fb19f136bb510","name":"Login Page","statistic":{"failed":0,"broken":0,"skipped":0,"passed":5,"unknown":0,"total":5}}]}

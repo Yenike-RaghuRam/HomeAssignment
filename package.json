@@ -5,7 +5,8 @@
   "scripts": {
     "open-allure": "allure generate ./Reports/allure-results --clean && allure open",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "npm run pretest && wdio run ./wdio.conf.js",
+    "pretest": "rimraf ./Reports/allure-results && rimraf allure-report && rimraf test-screenshots && rimraf wdio-logs"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "appium": "^2.11.2",
     "appium-uiautomator2-driver": "^3.7.4",
     "chromedriver": "^127.0.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "wdio-html-nice-reporter": "^8.1.6"
   }
 }

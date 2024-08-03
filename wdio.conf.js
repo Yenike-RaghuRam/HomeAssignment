@@ -153,8 +153,9 @@ exports.config = {
     // reporters: ['spec'],
     reporters: [['allure', {
         outputDir: './Reports/allure-results',
-        disableWebdriverStepsReporting: false,
+        disableWebdriverStepsReporting: true,
         disableWebdriverScreenshotsReporting: false,
+        useCucumberStepReporter :true
     }]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
@@ -219,8 +220,8 @@ exports.config = {
      * @param  {object} specs    specs to be run in the worker process
      * @param  {number} retries  number of retries used
      */
-    // onWorkerEnd: function (cid, exitCode, specs, retries) {
-    // },
+    onWorkerEnd: function (cid, exitCode, specs, retries) {
+    },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.
@@ -284,8 +285,11 @@ exports.config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: async function (step, scenario, result, context) {
+        if(result.error){
+            await driver.takeScreenshot()
+        }
+    },
     /**
      *
      * Runs after a Cucumber Scenario.
@@ -296,16 +300,16 @@ exports.config = {
      * @param {number}                 result.duration  duration of scenario in milliseconds
      * @param {object}                 context          Cucumber World object
      */
-    // afterScenario: function (world, result, context) {
-    // },
+    afterScenario: function (world, result, context) {
+    },
     /**
      *
      * Runs after a Cucumber Feature.
      * @param {string}                   uri      path to feature file
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // afterFeature: function (uri, feature) {
-    // },
+    afterFeature: function (uri, feature) {
+    },
     
     /**
      * Runs after a WebdriverIO command gets executed
@@ -323,16 +327,16 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
-    // },
+    after: function (result, capabilities, specs) {
+    },
     /**
      * Gets executed right after terminating the webdriver session.
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // afterSession: function (config, capabilities, specs) {
-    // },
+    afterSession: function (config, capabilities, specs) {
+    },
     /**
      * Gets executed after all workers got shut down and the process is about to exit. An error
      * thrown in the onComplete hook will result in the test run failing.
@@ -341,8 +345,8 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    onComplete: function(exitCode, config, capabilities, results) {
+    },
     /**
     * Gets executed when a refresh happens.
     * @param {string} oldSessionId session ID of the old session
@@ -360,6 +364,6 @@ exports.config = {
     * Hook that gets executed after a WebdriverIO assertion happened.
     * @param {object} params information about the assertion that was executed, including its results
     */
-    // afterAssertion: function(params) {
-    // }
+    afterAssertion: function(params) {
+    }
 }
