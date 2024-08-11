@@ -1,0 +1,16 @@
+function elementsInANotinB(arrA, arrB){
+    let result = []
+    let setB = new Set()
+    for(let num of arrB){
+        setB.add(num)
+    }
+    for(let num of arrA){
+        if(!setB.has(num))
+            result.push(num)
+    }
+    return result
+}
+
+let arrA = [1,2,3,4,5]
+let arrB = [2,3]
+console.log(elementsInANotinB(arrA, arrB))

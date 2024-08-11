@@ -1,0 +1,18 @@
+let str1 = "aaa"
+let str2 = "abcada"
+// let str2 = "baddbffcm"
+if(str1.length <= str2.length){
+    let str1_end = str1.length - 1;
+    let str2_end = str2.length - 1;
+    while(str1_end >= 0 && str2_end >= 0){
+        if(str1.charAt(str1_end) === str2.charAt(str2_end))
+            str1_end--
+        str2_end--
+    }
+    if(str1_end < 0)
+        console.log(`${str1} is subsequence of ${str2}`)
+    else
+        console.log(`${str1} is not subsequence of ${str2}`)
+} else {
+    console.log(`${str1} is not subsequence of ${str2}`)
+}
